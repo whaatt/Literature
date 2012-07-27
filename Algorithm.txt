@@ -1,0 +1,48 @@
+Literature 0.01
+By Sanjay Kannan
+
+Constraints:
+	- It must follow the rules of standard Literature.
+		- The parts of the deck are each of the suits, A-6 and 7-K.
+	- It must be constrained by imperfect memory.
+		- This is specified by a parameter to only store a certain amount of bits.
+		- Bits can be defined in one of three different ways.
+			- Two bits: Player X has card Z.
+			- Two bits: Player X does not have card Z.
+			- One bit: Player X has a basis in suit Y.
+
+Implementation:
+	- Create a Python class that inherits from Player.
+		- For example, your class might be class Einstein(Player)
+		- You must implement these following two functions.
+			- def process(self, move): This should naturally just process a move.
+			- def move(self): This should make your chosen move for a turn.
+				- self.game.ask(player, card): You should use this to ask a player for a card.
+					- Cards are defined as Suit + Value, so the King of Hearts would be 'HK'.
+					- You must ask players on the other team.
+					- Your team consists of either players 1,3,5 or 2,4,6.
+				- self.game.call(first, second, third): You should use this to call a suit major or minor.
+					- First, second, and third are you and your teammates.
+					- Your team is either players 1,3,5 or 2,4,6.
+					- First should correspond with player 1 or 2, second should correspond with player 3 or 4, and so on.
+					- First, second, and third should hold the cards you are calling from each of those respective players.
+		- You may use the following predefined variables.
+			- self.hand: This contains a list of your hand cards.
+			- self.memory: This is where you should store your information.
+				- You can redefine this to be a dictionary or something else, within the constraints.
+			- self.team: This is either 'A' or 'B'. Team A consists of players 1,3,5 and team B consists of players 2,4,6.
+			- self.free: You should ideally check and update your free memory space using this.
+			- self.limit: This should remain the original amount of memory you started with.
+		- You may call the following subroutines to help you.
+			- self.game.ask(player, card): See above.
+			- self.game.call(first, second, third): See above.
+			- self.game.number(player): This will give you the number of cards in the player's hand.
+			- self.game.score(): This will give you a list containing each team's captured sets as lists.
+				- The format of this output will be [[Team A Sets], [Team B Sets]].
+				- Team A/B Sets will be lists of sets, and each set contains all of the cards in that set.
+			- Game.CARDS(): This is a list of all 52 cards in a standard deck.
+			- Game.SETS(): This is a list of all of the sets. 
+				- The order is Spade, Diamond, Heart, Club Major, then Spade, Diamond, Heart, Club Minor.
+		- Within the constraints, you may create your own subroutines, constructor, and instance variables as needed.
+	- You must follow the basis rule and the rule that you cannot have the card you are asking for.
+	- You must strictly keep within the bit limit set with self.limit. There is no explicit checking however.
