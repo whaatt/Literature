@@ -1,6 +1,3 @@
-#Literature 0.01
-#By Sanjay Kannan
-
 import random
 import collections
 
