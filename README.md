@@ -1,6 +1,6 @@
 Literature
 =============
-An Implementation of the Card Game.
+An Implementation of the Card Game
 
 - Uses Pure Python 3 for everything.
 - Game and players are written as classes.
